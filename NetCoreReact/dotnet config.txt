@@ -1,0 +1,5 @@
+dotnet new sln -o NewSolition
+cd NewSolution
+dotnet new webapi - NewProject
+dotnet sln add /NewProject/NewProject.csproj
+dotnet run --project NewProject

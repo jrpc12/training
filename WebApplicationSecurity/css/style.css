@@ -1,0 +1,13 @@
+
+html{
+	color: black;
+	font-size: 1.5em;
+}
+
+body { 
+	background-color:darkgray;
+}
+
+header h1 {
+	text-align: center;
+}
