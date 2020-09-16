@@ -1,4 +1,4 @@
-namespace WorkerAPI.Models
+namespace NetCoreAPI.Models
 {
     public class ResponseMessage
     {

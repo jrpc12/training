@@ -14,13 +14,10 @@ export class RegisterForm extends React.Component{
     render() {
         return(
             <>
-            <h2>Exmple component</h2>
+            <h2>Fill contact information:</h2>
             <div dangerouslySetInnerHTML={{__html:"<strong><i> Injected</i> </strong>"}}></div>
             <div ref={this.myDivRef}></div>
             </>
         )
     }
 }
-
-
- <p dangerouslySetInnerHTML={{__html:this.state.ClassDescription}}></p>

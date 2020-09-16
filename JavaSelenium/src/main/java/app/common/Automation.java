@@ -33,7 +33,8 @@ public abstract class Automation {
         //maximize window
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);        
+        //global timeou to find element
+        //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);        
 
         return driver;
 

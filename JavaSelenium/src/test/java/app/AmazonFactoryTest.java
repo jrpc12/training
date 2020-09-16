@@ -1,23 +1,18 @@
 package app;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import app.pom.*;
+import app.pom.factory.*;
 import app.common.*;
 
-public class AmazonTest {
+public class AmazonFactoryTest {
 
     WebDriver driver = null;
     AmazonHome amazonHome = null;
 
-    AmazonTest(){
-        try{
-            
-        }
-        catch(Exception ex){
-            System.exit(0);
-        }
+    AmazonFactoryTest(){
     }
 
     @Test
@@ -25,10 +20,10 @@ public class AmazonTest {
 
         driver = Automation.getDriver("chrome");
         String productName = "piano";
-        amazonHome = new AmazonHome(driver);
+        amazonHome =  new AmazonHome(driver);
+        PageFactory.initElements(driver, amazonHome);
         amazonHome.init();
-        String searchResult = amazonHome.searchProducExplicitWait(productName);
-
+        String searchResult = amazonHome.searchProduct(productName);
         Assert.assertEquals(searchResult.indexOf("resultados para \"" + productName + "\"") > -1, true);
         
         Automation.closeDriver(driver);
@@ -42,6 +37,7 @@ public class AmazonTest {
         int productQty = 1;
         String productName = "piano";
         amazonHome = new AmazonHome(driver);
+        PageFactory.initElements(driver, amazonHome);
         amazonHome.init();
         amazonHome.searchProduct(productName);
         String cartMessage = amazonHome.addFirstProductToShopcart(productQty);;
@@ -60,6 +56,7 @@ public class AmazonTest {
         int productQty = 2;
         String productName = "piano";
         amazonHome = new AmazonHome(driver);
+        PageFactory.initElements(driver, amazonHome);
         amazonHome.init();
         amazonHome.searchProduct(productName);
         amazonHome.addFirstProductToShopcart(productQty);

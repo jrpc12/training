@@ -11,7 +11,8 @@ export class SprintRelease extends React.Component{
         super(props);        
         
         this.state = { 
-            jiracards : ["AA-3937"]
+            sprintVersion: "4.31.0.0",
+            jiracards : ["AA-4531"]
         };
 
         //this.updateFixVersion = this.updateFixVersion.bind(this);
@@ -28,7 +29,7 @@ export class SprintRelease extends React.Component{
             headers: {                
                 "Content-Type":"application/json"
               },
-            body: JSON.stringify( this.state.jiracards),
+            body: JSON.stringify(this.state.jiracards),
         })
         //.then(response => {response.json()})
         .then(response => {

@@ -11,13 +11,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WorkerAPI
+namespace NetCoreAPI
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            //Configuration = configuration;
+            Configuration = new ConfigurationBuilder()
+           .AddJsonFile("appsettings.json")
+           .AddJsonFile("appsettings.secrets.json")
+           .Build();
         }
 
         public IConfiguration Configuration { get; }
