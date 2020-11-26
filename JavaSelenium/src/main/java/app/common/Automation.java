@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public abstract class Automation {
 
-    private static String driverLocation = "browserDrivers/";
+    private static String driverLocation = "drivers/chromedriver/";
     public Automation(){}
 
     public static WebDriver getDriver(String browserName) throws Exception{
@@ -16,7 +16,7 @@ public abstract class Automation {
         switch(browserName){
 
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", driverLocation + "chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", driverLocation + "chromedriver");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
@@ -25,7 +25,7 @@ public abstract class Automation {
             case "safari":
                 throw new Exception("Not Implemented");
             default:
-                System.setProperty("webdriver.chrome.driver", driverLocation + "chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", driverLocation + "chromedriver");
                 driver = new ChromeDriver();
 
         }
