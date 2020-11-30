@@ -16,7 +16,7 @@ public class GoogleTest{
 	@Test
 	public void search(){
 		
-		System.setProperty("webdriver.chrome.driver","browserDrivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","drivers/chromedriver/chromedriver");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
