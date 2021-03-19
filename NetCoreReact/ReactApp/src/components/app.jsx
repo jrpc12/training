@@ -4,6 +4,7 @@ import { Home } from "./home.jsx"
 import { RegisterForm } from "./contact-form.jsx";
 import { About } from "./about.jsx"
 import { TicTacToe } from "./tictactoe/tictactoe.jsx";
+import { Minesweeper } from "./minesweeper/minesweeper.jsx";
 
 export class App extends React.Component{
 
@@ -19,6 +20,7 @@ export class App extends React.Component{
                     <Route exact path="/register" component={RegisterForm}/>
                     <Route exact path="/about" component={About}/>
                     <Route exact path="/tictactoe" component={TicTacToe}/>
+                    <Route exact path="/minesweeper" component={Minesweeper} />
                 </React.Fragment>
             </BrowserRouter>
         )
