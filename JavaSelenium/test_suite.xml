@@ -1,0 +1,7 @@
+<suite name="Suite" parallel="false" thread-count="1" >
+  <test name="AMZ Factory Test" group-by-instances="true">
+    <classes>
+      <class name="app.AmazonFactoryTest" />
+    </classes>
+  </test>
+</suite>

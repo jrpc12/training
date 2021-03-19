@@ -3,6 +3,7 @@ package app;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import app.pom.factory.*;
 import app.common.*;
@@ -15,7 +16,7 @@ public class AmazonFactoryTest {
     AmazonFactoryTest(){
     }
 
-    @Test
+    @Test(description = "Search Product")
     public void searchProduct() throws Exception{
 
         driver = Automation.getDriver("chrome");
@@ -25,11 +26,9 @@ public class AmazonFactoryTest {
         amazonHome.init();
         String searchResult = amazonHome.searchProduct(productName);
         Assert.assertEquals(searchResult.indexOf("resultados para \"" + productName + "\"") > -1, true);
-        
-        Automation.closeDriver(driver);
     }
 
-    @Test
+    @Test(description = "Add Product to Shopcart")
     public void addProductToShopCart() throws Exception{
         
         driver = Automation.getDriver("chrome");
@@ -42,13 +41,9 @@ public class AmazonFactoryTest {
         amazonHome.searchProduct(productName);
         String cartMessage = amazonHome.addFirstProductToShopcart(productQty);;
         Assert.assertEquals(cartMessage,"Agregado al carrito");
-                
-        Automation.closeDriver(driver);
     }
 
-    
-
-    @Test
+    @Test(description = "Validate Shopcart Quantity")
     public void validateCorrectToShopCartQuantity() throws Exception{
         
         driver = Automation.getDriver("chrome");
@@ -61,14 +56,15 @@ public class AmazonFactoryTest {
         amazonHome.searchProduct(productName);
         amazonHome.addFirstProductToShopcart(productQty);
         AmazonShopCart shopcart = new AmazonShopCart(driver);
+        
+        PageFactory.initElements(driver, shopcart);
         shopcart.init();
-        Assert.assertEquals(productQty, shopcart.getTotatItemsInShopCart());        
-
-        Automation.closeDriver(driver);
+        Assert.assertEquals(productQty, shopcart.getTotatItemsInShopCart());
     }
 
+    @AfterMethod
     public void dispose(){
-        
+        Automation.closeDriver(driver);
     }
     
 }

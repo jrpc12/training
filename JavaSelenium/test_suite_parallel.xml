@@ -1,0 +1,7 @@
+<suite name="Suite Parallel" parallel="methods" thread-count="3" >
+  <test name="AMZ Parallel Execution">
+    <classes>
+      <class name="app.AmazonTest" />
+    </classes>
+  </test>
+</suite>

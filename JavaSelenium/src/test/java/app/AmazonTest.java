@@ -8,70 +8,79 @@ import app.common.*;
 
 public class AmazonTest {
 
-    WebDriver driver = null;
-    AmazonHome amazonHome = null;
-
-    AmazonTest(){
-        try{
-            
-        }
-        catch(Exception ex){
-            System.exit(0);
-        }
-    }
+    AmazonTest(){}
 
     @Test
-    public void searchProduct() throws Exception{
+    public void searchProduct(){
 
-        driver = Automation.getDriver("chrome");
-        String productName = "piano";
-        amazonHome = new AmazonHome(driver);
-        amazonHome.init();
-        String searchResult = amazonHome.searchProducExplicitWait(productName);
+        WebDriver driver = null;
+        try{
+            driver = Automation.getDriver("chrome");
+            String productName = "piano";
+            AmazonHome amazonHome = new AmazonHome(driver);
+            amazonHome.init();
+            String searchResult = amazonHome.searchProducExplicitWait(productName);
 
-        Assert.assertEquals(searchResult.indexOf("resultados para \"" + productName + "\"") > -1, true);
-        
-        Automation.closeDriver(driver);
+            Assert.assertEquals(searchResult.indexOf("resultados para \"" + productName + "\"") > -1, true);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }finally{
+            Automation.closeDriver(driver);
+        }
     }
 
     @Test
     public void addProductToShopCart() throws Exception{
         
-        driver = Automation.getDriver("chrome");
+        WebDriver driver = null;
+        
+        try{
+            driver = Automation.getDriver("chrome");
+            int productQty = 1;
+            String productName = "piano";
+            AmazonHome amazonHome = new AmazonHome(driver);
+            amazonHome.init();
+            amazonHome.searchProduct(productName);
+            String cartMessage = amazonHome.addFirstProductToShopcart(productQty);
 
-        int productQty = 1;
-        String productName = "piano";
-        amazonHome = new AmazonHome(driver);
-        amazonHome.init();
-        amazonHome.searchProduct(productName);
-        String cartMessage = amazonHome.addFirstProductToShopcart(productQty);;
-        Assert.assertEquals(cartMessage,"Agregado al carrito");
+            Assert.assertEquals(cartMessage,"Agregado al carrito");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }finally{
+            Automation.closeDriver(driver);
+        }
                 
-        Automation.closeDriver(driver);
     }
-
     
-
     @Test
     public void validateCorrectToShopCartQuantity() throws Exception{
         
-        driver = Automation.getDriver("chrome");
-
-        int productQty = 2;
-        String productName = "piano";
-        amazonHome = new AmazonHome(driver);
-        amazonHome.init();
-        amazonHome.searchProduct(productName);
-        amazonHome.addFirstProductToShopcart(productQty);
-        AmazonShopCart shopcart = new AmazonShopCart(driver);
-        shopcart.init();
-        Assert.assertEquals(productQty, shopcart.getTotatItemsInShopCart());        
-
-        Automation.closeDriver(driver);
-    }
-
-    public void dispose(){
+        WebDriver driver = null;
         
+        try{
+            driver = Automation.getDriver("chrome");
+
+            int productQty = 2;
+            String productName = "piano";
+            AmazonHome amazonHome = new AmazonHome(driver);
+            amazonHome.init();
+            amazonHome.searchProduct(productName);
+            amazonHome.addFirstProductToShopcart(productQty);
+            AmazonShopCart shopcart = new AmazonShopCart(driver);
+            shopcart.init();
+            Assert.assertEquals(productQty, shopcart.getTotatItemsInShopCart()); 
+        
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }finally{
+            Automation.closeDriver(driver);
+        }
+
     }
+
     
 }

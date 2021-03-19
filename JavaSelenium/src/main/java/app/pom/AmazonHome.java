@@ -64,18 +64,19 @@ public class AmazonHome extends Automation {
         Select quantitySelector = new Select(driver.findElement(By.id("quantity")));
         quantitySelector.selectByVisibleText("1");
         driver.findElement(By.id("add-to-cart-button")).click();
-        String cartMessage = driver.findElement(By.id("huc-v2-order-row-messages")).getText();
+        String cartMessage = driver.findElement(By.id("attachDisplayAddBaseAlert")).getText();
         System.out.println(cartMessage);
         return cartMessage;
     }
 
-    public String addFirstProductToShopcart(int quantity){
+    public String addFirstProductToShopcart(int quantity) throws Exception {
 
         driver.findElement(By.className("s-image")).click();
         Select quantitySelector = new Select(driver.findElement(By.id("quantity")));
         quantitySelector.selectByVisibleText(Integer.toString(quantity));
         driver.findElement(By.id("add-to-cart-button")).click();
-        String cartMessage = driver.findElement(By.id("huc-v2-order-row-messages")).getText();
+        Thread.sleep(5000);
+        String cartMessage = driver.findElement(By.id("attachDisplayAddBaseAlert")).getText();
         System.out.println(cartMessage);
         return cartMessage;
     }

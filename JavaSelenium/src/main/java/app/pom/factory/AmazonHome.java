@@ -20,7 +20,7 @@ public class AmazonHome extends Automation {
     private WebElement selQuantity;
     @FindBy(id="add-to-cart-button")
     private WebElement addToCartButton;
-    @FindBy(id="huc-v2-order-row-messages")
+    @FindBy(id="attachDisplayAddBaseAlert")
     private WebElement cartMessage;
     @FindBy(className = "s-image")
     private WebElement productImage;
@@ -67,12 +67,13 @@ public class AmazonHome extends Automation {
         return message;
     }
 
-    public String addFirstProductToShopcart(int quantity){
+    public String addFirstProductToShopcart(int quantity) throws Exception {
 
         productImage.click();
         Select quantitySelector = new Select(selQuantity);
         quantitySelector.selectByVisibleText(Integer.toString(quantity));
         addToCartButton.click();
+        Thread.sleep(5000);
         String message = cartMessage.getText();
         System.out.println(message);
         return message;
